@@ -62,8 +62,10 @@ public class Conexion {
 		return this.con;
 	}
 	
-	public PreparedStatement setPreparedStatement (String sql) throws Exception{
-		this.preparedStatement = con.prepareStatement(sql);
+	public PreparedStatement setPreparedStatement (String sql)  throws SQLException {
+		
+			this.preparedStatement = con.prepareStatement(sql);
+		
 		return this.preparedStatement;
 	}
 }

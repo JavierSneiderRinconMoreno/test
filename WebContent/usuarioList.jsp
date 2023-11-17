@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
   
-  	<%@taglib prefix = "c" 
-   uri = "http://java.sun.com/jsp/jstl/core" %>
+  	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
   	
   	
 <!DOCTYPE html>
@@ -34,7 +33,7 @@ integrity=" sha384-gg0yROIXCbv3Xipma34MD+dH/1fQ784/j6cY/ITQUOhcWr7×93voR×T2MZw
 		<h3 class="text-center">Listado de Usuarios</h3>
 		<hr>
 		<div class="container text-left">
-			<a href="<%=request. getContextPath()%>/new" class="btn btn-success"> Nuevo Usuanios</a>
+			<a href="<%=request.getContextPath()%>/new" class="btn btn-success"> Agregar Nuevo Usuanios</a>
 		</div>
 		<br>
 		<table class="table table-bordered">
@@ -50,7 +49,7 @@ integrity=" sha384-gg0yROIXCbv3Xipma34MD+dH/1fQ784/j6cY/ITQUOhcWr7×93voR×T2MZw
 		<tbody>
 			<!-- for (todo todo: todo ) { -->
 			
-			<c:forEach  var = "usuario" items="${listUsuarios}"/> 
+			<c:forEach  var = "usuario" items="${listUsuarios}"> 
 			 
 			<tr>
 			<td>
@@ -66,10 +65,13 @@ integrity=" sha384-gg0yROIXCbv3Xipma34MD+dH/1fQ784/j6cY/ITQUOhcWr7×93voR×T2MZw
 				<c:out value="${usuario.pais}"/>
 			</td>
 			<td>
-				<a href="edit?id=<c:out value="${usuario.id}"/> ">Editar </a> &nbsp;&nbsp;&nbsp;&nbsp; <a hreft="delete?id=<c:out value="${usuario.id}"/> ">Eliminar </a> 
+				<a href="edit?id=<c:out value="${usuario.id}"/> ">Editar </a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+				 <a href="delete?id=<c:out value="${usuario.id}"/> ">Eliminar </a> 
 			</td>
 			</tr>		
-		</c>	
+		</c:forEach>	
+			
 		</tbody>
 		
 		</table>

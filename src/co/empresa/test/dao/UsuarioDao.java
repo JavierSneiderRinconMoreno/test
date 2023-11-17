@@ -31,24 +31,21 @@ public class UsuarioDao {
 			conexion.execute();
 		}catch(SQLException e) {
 			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		} 
 	}
 	
-	public void delete (int id) throws SQLException {
+	public void delete (int id) throws SQLException{
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement)conexion.setPreparedStatement(DELETE_USUARIO_SQL);
 			preparedStatement.setInt(1, id);
 			conexion.execute();
-		}catch(Exception e ) {
+		}catch(SQLException e ) {
 			
 		}
 		
 	}
 	
-	public void update (Usuario usuario)  throws SQLException {
+	public void update (Usuario usuario) throws SQLException  {
 		try {
 			//falta el casteov
 			PreparedStatement preparedStatement = (PreparedStatement)conexion.setPreparedStatement(UPDATE_USUARIO_SQL);
@@ -59,9 +56,6 @@ public class UsuarioDao {
 			conexion.execute();
 		}catch(SQLException e) {
 			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
 		}
 	}
 	
@@ -80,7 +74,7 @@ public class UsuarioDao {
 				usuarios.add(new Usuario(id,nombre,email,pais));
 			}
 			
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			
 		}
 		return usuarios;
@@ -104,7 +98,7 @@ public class UsuarioDao {
 				usuario  = new Usuario(id,nombre,email,pais);
 			}
 			
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			
 		}
 		return usuario;

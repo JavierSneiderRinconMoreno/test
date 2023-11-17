@@ -66,14 +66,12 @@ public class UsuarioServlet extends HttpServlet {
 		default : 
 			listUsuarios(request,response);
 			break;
-	
 		}
-		}
-		catch(SQLException e) {
+		}catch(SQLException e) {
 			throw new ServletException(e);
 		}
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -89,7 +87,7 @@ public class UsuarioServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
+	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
 		String pais = request.getParameter("pais");
@@ -113,7 +111,7 @@ public class UsuarioServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException,SQLException, IOException {
+	private void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) throws SQLException,ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
@@ -140,7 +138,7 @@ public class UsuarioServlet extends HttpServlet {
 		
 		request.setAttribute("listUsuarios", listUsuario);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("usuariolist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioList.jsp");
 		dispatcher.forward(request, response);
 		
 	}
