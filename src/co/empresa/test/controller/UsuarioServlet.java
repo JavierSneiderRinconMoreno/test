@@ -91,8 +91,9 @@ public class UsuarioServlet extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
 		String pais = request.getParameter("pais");
-		
+		System.out.print(nombre + email + pais );
 		Usuario usuario = new Usuario(nombre,email,pais);
+		System.out.print(usuario );
 		
 		usuarioDao.insert(usuario);
 		

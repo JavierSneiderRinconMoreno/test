@@ -11,7 +11,7 @@ import co.empresa.test.util.Conexion;
 
 public class UsuarioDao {
 	private Conexion conexion;
-	private static final String INSERT_USUARIO_SQL = "INSER_INTO_usuario(nombre,email,pais) VALUE(?,?,?);";
+	private static final String INSERT_USUARIO_SQL = "INSERT INTO usuario(nombre,email,pais) VALUE(?,?,?);";
 	private static final String DELETE_USUARIO_SQL = "DELETE FROM usuario WHERE id = ?;";
 	private static final String UPDATE_USUARIO_SQL = "UPDATE usuario SET nombre = ? ,email = ?,pais= ? WHERE id =?;";
 	private static final String SELECT_USUARIO_BY_ID = "SELECT * FROM usuario WHERE id=?;";
@@ -22,15 +22,23 @@ public class UsuarioDao {
 	}
 	
 	public void insert (Usuario usuario) throws SQLException{
+		System.out.print("Endap");
+		System.out.println(usuario);
 		try {
-			//falta el casteov
+			System.out.println("1");
 			PreparedStatement preparedStatement = (PreparedStatement)conexion.setPreparedStatement(INSERT_USUARIO_SQL);
+			System.out.println("2");
 			preparedStatement.setString(1, usuario.getNombre());
+			System.out.println("3");
 			preparedStatement.setString(2, usuario.getEmail());
+			System.out.println("4");
 			preparedStatement.setString(3, usuario.getPais());
+			System.out.println("5");
 			conexion.execute();
+			System.out.println("6");
 		}catch(SQLException e) {
-			
+			System.out.println("EROR");
+			e.printStackTrace();	
 		} 
 	}
 	
@@ -47,7 +55,6 @@ public class UsuarioDao {
 	
 	public void update (Usuario usuario) throws SQLException  {
 		try {
-			//falta el casteov
 			PreparedStatement preparedStatement = (PreparedStatement)conexion.setPreparedStatement(UPDATE_USUARIO_SQL);
 			preparedStatement.setString(1, usuario.getNombre());
 			preparedStatement.setString(2, usuario.getEmail());
