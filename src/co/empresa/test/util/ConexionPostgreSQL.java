@@ -1,4 +1,4 @@
-	package co.empresa.test.util;
+package co.empresa.test.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,23 +6,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * 
- */
-public class Conexion {
-	private Connection con = null;
+public class ConexionPostgreSQL {
+private Connection con = null;
 	
-	private static Conexion db;
+	private static ConexionPostgreSQL db;
 	private PreparedStatement preparedStatement;
 	
 
-	private static final String url = "jdbc:mysql://localhost:3306/";
+	private static final String url = "jdbc:posgresql://localhost:5432/";
 	private static final String dbName = "sistema";
-	private static final String driver = "com.mysql.jdbc.Driver";
-	private static final String userName = "javier";
-	private static final String password = "javier";
+	private static final String driver = "org.postgresql.Driver";
+	private static final String userName = "postgres";
+	private static final String password = "postgres";
 	
-	public Conexion() {
+	public ConexionPostgreSQL() {
 		try {
 			Class.forName(driver).newInstance();
 			con = (Connection)DriverManager.getConnection(url+dbName,userName,password);
@@ -41,9 +38,9 @@ public class Conexion {
 		}
 	}
 	
-	public static Conexion  getConexion() {
+	public static ConexionPostgreSQL  getConexion() {
 		if(db == null) {
-			db = new Conexion ();
+			db = new ConexionPostgreSQL ();
 		}
 		return db;
 	}
@@ -62,10 +59,9 @@ public class Conexion {
 		return this.con;
 	}
 	
-	public PreparedStatement setPreparedStatement (String sql)  throws SQLException {
-		
-			this.preparedStatement = con.prepareStatement(sql);
-		
+	public PreparedStatement setPreparedStatement (String sql) throws Exception{
+		this.preparedStatement = con.prepareStatement(sql);
 		return this.preparedStatement;
 	}
+
 }
